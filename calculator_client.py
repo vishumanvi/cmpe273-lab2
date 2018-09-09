@@ -14,7 +14,7 @@
 """The Python implementation of the GRPC Calculator client."""
 
 from __future__ import print_function
-re
+
 import grpc
 
 import calculator_pb2
@@ -25,15 +25,14 @@ def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
+    number1 = 10
+    number2 = 15
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = calculator_pb2_grpc.CalculatorStub(channel)
-        response = stub.add(calculator_pb2.addRequest(num1=5, num2=25))
+        response = stub.add(calculator_pb2.addRequest(num1=number1, num2=number2))
         f = open("output.txt", 'a')
-        f.write("\n Calculator client received: %d" %response.sum)
+        f.write("\n Received from add RPC call: {} + {} = {}" .format(number1,number2,response.sum))
         f.close()
-
-    print("\n Calculator client received: %d" %response.sum)
-
 
 if __name__ == '__main__':
     run()
