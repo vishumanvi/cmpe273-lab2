@@ -1,2 +1,2 @@
 
- Calculator client received: 30
+ Received from add RPC call: 10 + 15 = 25
